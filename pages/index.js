@@ -62,7 +62,7 @@ function Title(props) {
 export default HomePage; */
 
 export default function PaginaInicial() {
-  const username = 'peas';
+  const username = 'BrunaDuarte-3321';
 
   return (
     <>
@@ -74,7 +74,7 @@ export default function PaginaInicial() {
           justifyContent: 'center',
           backgroundColor: appConfig.theme.colors.primary[500],
           backgroundImage:
-            'url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)',
+            'url(https://baixarpapeldeparede.com/web/wallpapers/wallpaper-hd-harry-potter-32/thumbnail/lg.jpg)',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundBlendMode: 'multiply',
