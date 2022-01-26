@@ -1,37 +1,8 @@
 import React from 'react';
 import appConfig from '../config.json';
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
+import { useRouter } from 'next/router';
 
-function GlobalStyle() {
-  return (
-    <style global jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-      }
-      body {
-        font-family: 'Open Sans', sans-serif;
-      }
-      /* App fit Height */
-      html,
-      body,
-      #__next {
-        min-height: 100vh;
-        display: flex;
-        flex: 1;
-      }
-      #__next {
-        flex: 1;
-      }
-      #__next > * {
-        flex: 1;
-      }
-      /* ./App fit Height */
-    `}</style>
-  );
-}
 function Title(props) {
   const Tag = props.tag || 'h1';
   return (
@@ -62,11 +33,13 @@ function Title(props) {
 export default HomePage; */
 
 export default function PaginaInicial() {
-  const username = 'BrunaDuarte-3321';
+  const [username, setUserName] = React.useState(null);
+  console.log(username);
+
+  const roteamento = useRouter();
 
   return (
     <>
-      <GlobalStyle />
       <Box
         styleSheet={{
           display: 'flex',
@@ -95,12 +68,21 @@ export default function PaginaInicial() {
             padding: '32px',
             margin: '16px',
             boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-            backgroundColor: appConfig.theme.colors.neutrals[700],
+            backgroundImage:
+              'url(https://tm.ibxk.com.br/2022/01/06/06090650586027.jpg?ims=1120x420)',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundBlendMode: 'multiply',
           }}
         >
           {/* Formulário */}
           <Box
             as="form"
+            onSubmit={function (event) {
+              event.preventDefault();
+              /* Navegação pages */
+              roteamento.push('/chat');
+            }}
             styleSheet={{
               display: 'flex',
               flexDirection: 'column',
@@ -123,13 +105,22 @@ export default function PaginaInicial() {
             </Text>
 
             <TextField
+              onChange={function (event) {
+                /* De onde o valor vem?? */
+                const valor = event.target.value;
+
+                /* Troca o valor da variável */
+                /*  Através do React  e avisa quem precisa*/
+
+                setUserName(valor);
+              }}
               fullWidth
               textFieldColors={{
                 neutral: {
                   textColor: appConfig.theme.colors.neutrals[200],
                   mainColor: appConfig.theme.colors.neutrals[900],
                   mainColorHighlight: appConfig.theme.colors.primary[500],
-                  backgroundColor: appConfig.theme.colors.neutrals[800],
+                  backgroundColor: 'rgba(0,0,0, .5)',
                 },
               }}
             />
@@ -155,7 +146,8 @@ export default function PaginaInicial() {
               alignItems: 'center',
               maxWidth: '200px',
               padding: '16px',
-              backgroundColor: appConfig.theme.colors.neutrals[800],
+              backgroundColor: 'rgba(0,0,0, .50)',
+
               border: '1px solid',
               borderColor: appConfig.theme.colors.neutrals[999],
               borderRadius: '10px',
@@ -177,6 +169,7 @@ export default function PaginaInicial() {
                 backgroundColor: appConfig.theme.colors.neutrals[900],
                 padding: '3px 10px',
                 borderRadius: '1000px',
+                backgroundColor: 'rgba(0,0,0, .5)',
               }}
             >
               {username}
